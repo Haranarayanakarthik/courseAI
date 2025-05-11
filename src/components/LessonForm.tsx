@@ -16,10 +16,15 @@ export default function LessonForm({
   onSubmit,
   isGenerating,
 }: LessonFormProps) {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    topic: string;
+    description: string;
+    difficulty: "beginner" | "intermediate" | "advanced";
+    duration: number;
+  }>({
     topic: "",
     description: "",
-    difficulty: "beginner" as const,
+    difficulty: "beginner",
     duration: 60,
   });
 
@@ -81,10 +86,7 @@ export default function LessonForm({
           onChange={(e) =>
             setFormData({
               ...formData,
-              difficulty: e.target.value as
-                | "beginner"
-                | "intermediate"
-                | "advanced",
+              difficulty: e.target.value as "beginner" | "intermediate" | "advanced",
             })
           }
           className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
